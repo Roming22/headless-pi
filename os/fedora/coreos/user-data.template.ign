@@ -1,0 +1,28 @@
+{
+  "ignition": {
+    "version": "3.3.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "$default_user",
+        "groups": [
+          "docker",
+          "sudo",
+          "wheel"
+        ],
+        "sshAuthorizedKeys": [
+          "$ssh_public_key"
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "files": [{
+      "path": "/etc/hostname",
+      "mode": 420,
+      "overwrite": true,
+      "contents": { "source": "data:,$hostname" }
+    }]
+  }
+}

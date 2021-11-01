@@ -1,0 +1,41 @@
+#cloud-config
+#
+# https://cloudinit.readthedocs.io/
+#
+
+hostname: ${hostname}
+
+users:
+  # Setup default user
+  - name: ${default_user}
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - ${default_user__ssh__authorized_keys}
+    groups:
+      - ubuntu
+    sudo:
+      - ALL=(ALL) NOPASSWD:ALL
+
+# Update the system
+package_update: true
+package_upgrade: true
+
+packages:
+  - curl
+
+# Schedule hourly system upgrades
+write_files:
+  - content: |
+      #!/bin/bash -e
+      apt-get update
+      apt-get upgrade --yes
+      [[ -e "/var/run/reboot-required" ]] && reboot
+    owner: root:root
+    path: /etc/cron.hourly/system-upgrade
+    permissions: 0744
+
+# Reboot after first boot
+power_state:
+  delay: now
+  message: Device is configured and up to date. Rebooting...
+  mode: reboot
