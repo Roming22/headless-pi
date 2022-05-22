@@ -60,7 +60,7 @@ parse_args() {
 
 
 choose_distribution() {
-    VERSION="21.10"
+    VERSION="22.04"
     TYPE="server"
     IMAGE_URL="https://cdimage.ubuntu.com/releases/${VERSION}/release/ubuntu-${VERSION}-preinstalled-${TYPE}-arm64+raspi.img.xz"
     IMAGE_PATH="${IMAGES_DIR}/ubuntu-${VERSION}-${TYPE}.img.xz"
