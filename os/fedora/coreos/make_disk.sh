@@ -75,7 +75,7 @@ copy_uefi() {
     RPI_FW_VERSION="v1.31"
     RPI_FW_URL="https://github.com/pftf/RPi4/releases/download/${RPI_FW_VERSION}/RPi4_UEFI_Firmware_${RPI_FW_VERSION}.zip"
     RPI_FW="${IMAGES_DIR}/RPi4_UEFI_Firmware_${RPI_FW_VERSION}.zip"
-    [[ -e "$RPI_FW" ]] || curl --location --output "$RPI_FW" "$RPI_FW_URL"
+    [[ -e "$RPI_FW" ]] || curl --fail --location --output "$RPI_FW" "$RPI_FW_URL"
 
     UEFI_DIR="$TMP_DIR/uefi"
     mkdir "$UEFI_DIR"

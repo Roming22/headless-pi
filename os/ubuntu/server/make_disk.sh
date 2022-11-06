@@ -60,7 +60,7 @@ parse_args() {
 
 
 choose_distribution() {
-    VERSION="22.04"
+    VERSION="22.04.1"
     TYPE="server"
     IMAGE_URL="https://cdimage.ubuntu.com/releases/${VERSION}/release/ubuntu-${VERSION}-preinstalled-${TYPE}-arm64+raspi.img.xz"
     IMAGE_PATH="${IMAGES_DIR}/ubuntu-${VERSION}-${TYPE}.img.xz"
@@ -71,7 +71,7 @@ download_image() {
     if [[ ! -e "${IMAGE_PATH}" ]]; then
         info "Downloading image..."
         mkdir -p "${IMAGES_DIR}"
-        curl -o "${IMAGE_PATH}" "${IMAGE_URL}"
+        curl --fail --location --output "${IMAGE_PATH}" "${IMAGE_URL}"
     fi
 }
 
